@@ -10,12 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.example.model.Produit;
 import com.example.repositories.ProduitRepository;
 
-@EnableAutoConfiguration
-@SpringBootApplication(scanBasePackages= {"com.example.repositories","com.example.controllers","com.example.model"})
-public class DemoApplication implements CommandLineRunner, WebMvcConfigurer{
+
+public class DemoApplication {
 	
-	@Autowired
-	 ProduitRepository p;
+	
 	
 	
 	public static void main(String[] args) {
@@ -24,12 +22,5 @@ public class DemoApplication implements CommandLineRunner, WebMvcConfigurer{
 	}
 
 
-	@Override
-	public void run(String... args) throws Exception {
-		p.save(new Produit("produit1","Le premier produit de la marque",100,"image1"));
-		p.save(new Produit("produit2","Le deuxième produit de la marque",99,"image2"));
-		p.save(new Produit("produit3","Le troisième produit de la marque",150,"image3"));
-		
-	}
 
 }
