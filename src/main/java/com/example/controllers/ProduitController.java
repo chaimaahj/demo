@@ -21,16 +21,28 @@ import com.example.repositories.ProduitRepository;
 public class ProduitController {
 
 	@Autowired
-	private ProduitRepository prod;
+	private ProduitRepository p;
 	
+	
+	
+	public Collection<Produit> init(){
+		Collection<Produit> pdtList=null;
+		p.save(new Produit("produit1","Le premier produit de la marque",100,"image1"));
+		p.save(new Produit("produit2","Le deuxième produit de la marque",99,"image2"));
+		p.save(new Produit("produit3","Le troisième produit de la marque",150,"image3"));
+		for (Produit val:p.findAll())
+		{
+			pdtList.add(val);
+		}
+		return pdtList;
+	}
 	
 	@GetMapping(value="/afficher")
 	public String showAll() {
-		Collection<Produit> pdtsList = null;
-		for(Produit p:prod.findAll())
+		for(Produit prod:p.findAll())
 		{
-			pdtsList.add(p);
-			System.out.println("voilà le produit:" + p);
+			
+			System.out.println("voilà le produit:" + prod);
 		}
 		return "afficher" ;
 	}
@@ -38,7 +50,7 @@ public class ProduitController {
 	@GetMapping("/unproduit")
 	public Optional<Produit> getPdtId(@RequestParam int id)
 	{
-		return prod.findById(id);
+		return p.findById(id);
 	}
 	
 	
