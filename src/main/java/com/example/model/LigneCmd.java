@@ -16,7 +16,6 @@ public class LigneCmd implements Serializable {
 	@JoinColumn(name="idPdt")
 	private Produit pdt;
 	private int qte;
-	private double prix;
 	@ManyToOne
 	@JoinColumn(name="idCmd")
 	private Commande cmd;
@@ -30,7 +29,6 @@ public class LigneCmd implements Serializable {
 		super();
 		this.pdt = pdt;
 		this.qte = qte;
-		this.prix = prix;
 	}
 
 	@Id
@@ -59,13 +57,6 @@ public class LigneCmd implements Serializable {
 		this.qte = qte;
 	}
 
-	public double getPrix() {
-		return prix;
-	}
-
-	public void setPrix(double prix) {
-		this.prix = prix;
-	}
 	
 	
 

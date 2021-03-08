@@ -27,20 +27,8 @@ public class Panier implements Serializable {
 	private HashMap<Integer,LigneCmd> pdts = new HashMap<Integer,LigneCmd>();
 	
 	
-	public void addProduit(Produit p, int qte) {
-		if(pdts.get(p.getIdPdt()) != null)
-		{
-			LigneCmd l = pdts.get(p.getIdPdt());
-			l.setQte(l.getQte()+qte);
-		}
-		else {
-			LigneCmd l= new LigneCmd();
-			l.setPdt(p);
-			l.setQte(qte);
-			l.setPrix(p.getPrix());
-				
-		}
-	}
+	
+		
 	
 	//avoir le prix total du panier
 	public double totalCmd()
@@ -48,7 +36,7 @@ public class Panier implements Serializable {
 		double som = 0;
 		for (LigneCmd l : pdts.values())
 		{
-			som +=l.getPrix() * l.getQte();
+			som +=l.getPdt().getPrix() * l.getQte();
 		}
 		return som;
 	}

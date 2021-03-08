@@ -87,13 +87,6 @@ public class Client implements Serializable{
 		this.tel = tel;
 	}
 
-	public Collection<Commande> getCmds() {
-		return cmds;
-	}
-
-	public void setCmds(Collection<Commande> cmds) {
-		this.cmds = cmds;
-	}
 	
 	
 	
