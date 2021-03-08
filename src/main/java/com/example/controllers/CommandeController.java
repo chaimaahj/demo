@@ -23,13 +23,10 @@ public class CommandeController {
 		
 	}
 	
+	
+	
 	public String ShowCmd() {
-		Collection<Commande> cmds=null;
-		for(Commande c:cmd.findAll())
-		{
-			cmds.add(c);
-			System.out.println("Le détail de ma commande: " +c);
-		}
+		
 		return "cmdView";
 	}
 	

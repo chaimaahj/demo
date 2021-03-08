@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,10 @@ public class ProduitController {
 	
 
 	@GetMapping("/pdt/{idPdt}")
-	public String getPdtId(Integer id)
+	public String getPdtId(Integer id, Model model)
 	{
 		pdt = p.findById(id);
+		model.addAttribute("pdt",pdt);
 		return "pdt";
 	}
 	
