@@ -12,45 +12,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.model.Produit;
 import com.example.repositories.ProduitRepository;
 
-@RequestMapping("/pdt")
+
+@RequestMapping("/")
 @Controller
 public class ProduitController {
 
 	@Autowired
 	private ProduitRepository p;
+	private Collection<Produit> pdtList= null;
+	private Optional<Produit> pdt;
 	
 	
 	
-	public Collection<Produit> init(){
-		Collection<Produit> pdtList=null;
+	public void init(){
 		p.save(new Produit("produit1","Le premier produit de la marque",100,"image1"));
 		p.save(new Produit("produit2","Le deuxième produit de la marque",99,"image2"));
 		p.save(new Produit("produit3","Le troisième produit de la marque",150,"image3"));
-		for (Produit val:p.findAll())
-		{
-			pdtList.add(val);
-		}
-		return pdtList;
+		
 	}
 	
 	@GetMapping(value="/afficher")
-	public String showAll() {
-		for(Produit prod:p.findAll())
-		{
-			
-			System.out.println("voilà le produit:" + prod);
-		}
-		return "afficher" ;
+	public ModelAndView produitAll() {
+		ModelAndView mv = new ModelAndView();
+		pdtList=p.findAll();
+		mv.setViewName("afficher");
+		mv.addObject("pdtList", pdtList);
+		return mv;
 	}
 	
-	@GetMapping("/unproduit")
-	public Optional<Produit> getPdtId(@RequestParam int id)
+
+	@GetMapping("/pdt/{idPdt}")
+	public String getPdtId(Integer id)
 	{
-		return p.findById(id);
+		pdt = p.findById(id);
+		return "pdt";
 	}
 	
 	
