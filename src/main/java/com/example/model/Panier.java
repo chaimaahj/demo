@@ -30,6 +30,16 @@ public class Panier implements Serializable {
 	
 		
 	
+	public Panier(int idPanier) {
+		super();
+		this.idPanier = idPanier;
+	}
+
+	public Panier() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	//avoir le prix total du panier
 	public double totalCmd()
 	{
